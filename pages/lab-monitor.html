@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Lab Observer - CodeLabs</title>
+
+    <link rel="icon" type="image/x-icon" href="/image/favicon.ico">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.4.0/css/all.css">
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.4.0/css/sharp-light.css">
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.4.0/css/sharp-regular.css">
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.4.0/css/sharp-solid.css">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Belanosima|Audiowide|Roboto|Lato">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inconsolata">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.44.0/min/vs/editor/editor.main.min.css"
+        integrity="sha512-eubffMYOzstZjQgYykD480h5N6jKsfDjRxHz1IjdZoaPkXZZnWr2WT/QDr+k35b2tUbafYWlM1gkgD4UOOtuTw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="/style/lab-monitor-style.css">
+</head>
+
+<body>
+    <header id="header-container">
+        <div id="header-text">
+            <img src="/image/codelabs-logo.png" alt="codelabs-logo">
+            <span class="website-name">Code</span><span class="website-name">Labs</span>
+            <div id="room-name-text-container">
+                <i class="fa-solid fa-angles-right"></i>
+                <span id="room-name-text"></span>
+            </div>
+        </div>
+
+        <div id="header-options">
+            <div id="home-icon"><i class="fa-solid fa-house"></i></div>
+            <div id="notification-icon"><i class="fa-solid fa-bell"></i></div>
+            <img id="profile-icon" src="/image/download.png" alt="Profile Picture">
+        </div>
+
+        <div id="profile-popup">
+            <span id="email-id"></span>
+
+            <div id="profile-image">
+                <div id="profile-picture-container">
+                    <img id="profile-picture" src="/image/download.png" alt="Profile Picture">
+                    <div id="profile-edit-icon">
+                        <i class="fa-light fa-pen"></i>
+                    </div>
+                    <div id="profile-picture-options" style="display: none;">
+                        <!-- By using the accept attribute with the value "image/*", 
+                        you're providing a hint to the user about the types of files 
+                        they should select, making it clear that they should choose an image file. -->
+                        <input type="file" accept="image/*" id="profile-picture-input" style="display: none;">
+                        <button id="change-profile-picture">Change</button>
+                        <button id="remove-profile-picture">Remove</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="profile-name">
+                <div id="profile-name-container">
+                    <span id="full-name-id"></span>
+                    <input type="text" id="profile-name-input" style="display: none;">
+                    <div id="profile-name-edit-icon">
+                        <i class="fa-light fa-pen"></i>
+                    </div>
+                    <div id="profile-name-save-icon" style="display: none;">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </div>
+                </div>
+            </div>
+
+            <button id="manage-account-redirect">
+                <a target="_blank" href="https://myaccount.google.com/?hl=en&utm_source=OGB&utm_medium=act">Manage your
+                    Google Account</a>
+            </button>
+
+            <button id="logout">Logout</button>
+        </div>
+
+        <div id="notification-popup">
+            <p>No messages for you.</p>
+        </div>
+    </header>
+
+    <section id="util-tray">
+        <div id="util-editor-option" class="util-tray-button selected-util-button"><i
+                class="fa-solid fa-square-terminal"></i></div>
+        <div id="util-video-option" class="util-tray-button"><i class="fa-solid fa-video"></i></div>
+    </section>
+
+    <section id="editor-section" class="page-section">
+        <div id="participant-tree-view">
+            <div id="participant-tree-nav">
+                <span class="editor-section-header-text"><i class="fa-solid fa-screen-users"></i>Participants</span>
+            </div>
+            <div id="participant-tree-content">
+                <ul id="participant-tree-list"></ul>
+            </div>
+        </div>
+        <div id="file-view" class="file-view-hidden">
+            <div id="file-nav">
+                <span class="editor-section-header-text"><i class="fa-sharp fa-regular fa-memo-pad"></i><span
+                        id="file-name-text"></span></span>
+                <div class="editor-file-control-option">
+                    <div id="zoom-out-file-button" class="editor-section-icon">
+                        <i class="fa-solid fa-minus"></i>
+                    </div>
+                    <div id="zoom-in-file-button" class="editor-section-icon">
+                        <i class="fa-solid fa-plus"></i>
+                    </div>
+                </div>
+                <div class="editor-file-control-option">
+                    <div id="run-file-button" class="editor-section-button">
+                        <i class="fa-solid fa-play"></i>
+                        <span>Run</span>
+                    </div>
+                    <div id="download-file-button" class="editor-section-button">
+                        <i class="fa-solid fa-download"></i>
+                        <span>Download</span>
+                    </div>
+                    <a id="editor-file-download-link" href="#" style="display: none;"></a>
+                </div>
+            </div>
+            <div id="file-stat">
+                <div id="file-content"></div>
+                <div id="file-console">
+                    <div id="file-console-header">
+                        <span class="file-console-option selected-console-option"><i
+                                class="fa-solid fa-input-pipe"></i>Input</span>
+                        <span class="file-console-option"><i
+                                class="fa-regular fa-square-poll-horizontal"></i>Output</span>
+
+                        <div id="console-grip-slider" class="grip-slider"><i class="fa-solid fa-grip-dots"></i></div>
+
+                        <div class="file-console-window-options">
+                            <span id="console-font-size-decrease-button" class="file-console-window-option"><i
+                                    class="fa-solid fa-minus"></i></span>
+                            <span id="console-font-size-increase-button" class="file-console-window-option"><i
+                                    class="fa-solid fa-plus"></i></span>
+                            <span id="console-input-share-button" class="file-console-window-option"><i
+                                class="fa-solid fa-share"></i></span>
+                        </div>
+                    </div>
+                    <div id="file-input-window" class="file-console-window">
+                        <textarea id="file-input-window-textarea" autocomplete="off" autocorrect="off"
+                            autocapitalize="off" spellcheck="false"></textarea>
+                    </div>
+                    <div id="file-output-window" class="file-console-window hide-console-window">
+                        <textarea id="file-output-window-textarea" autocomplete="off" autocorrect="off"
+                            autocapitalize="off" spellcheck="false" readonly></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="videocon-section" class="page-section hide-section">
+        <iframe id="videocon-iframe" src="" frameborder="0" allow="camera; microphone"></iframe>
+    </section>
+
+    <section id="chat-section" class="page-section hide-section">
+
+    </section>
+
+    <!-- scripts -->
+    <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-storage.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.44.0/min/vs/loader.min.js"
+        integrity="sha512-ZG31AN9z/CQD1YDDAK4RUAvogwbJHv6bHrumrnMLzdCrVu4HeAqrUX7Jsal/cbUwXGfaMUNmQU04tQ8XXl5Znw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.44.0/min/vs/editor/editor.main.nls.min.js"
+        integrity="sha512-uye2SX2ZylUu0MEsELOhLwMDnBwYXB6JvN1VFZD3x+bHsrOgzsLCUmh7kS2x92YLg85i+ekKFTpNl/r/FzbZ5w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script type="module" src="/script/firebase-config.js"></script>
+    <script type="module" src="/script/lab-monitor-script.js"></script>
+</body>
+
+</html>

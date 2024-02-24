@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Profile - CodeLabs</title>
+
+    <link rel="icon" type="image/x-icon" href="/image/favicon.ico">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.4.0/css/all.css">
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.4.0/css/sharp-light.css">
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.4.0/css/sharp-regular.css">
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.4.0/css/sharp-solid.css">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Belanosima|Audiowide|Roboto|Lato">
+
+    <link rel="stylesheet" href="/style/profileStyle.css">
+</head>
+
+<body>
+    <header id="header-container">
+        <p id="header-text">
+            <img src="/image/codelabs-logo.png" alt="codelabs-logo">
+            <span>Code</span><span>Labs</span>
+        </p>
+
+        <div id="header-options">
+            <!-- <div id="settings-icon"><i class="fa-solid fa-gear"></i></div> -->
+            <div id="notification-icon"><i class="fa-solid fa-bell"></i></div>
+            <img id="profile-icon" src="/image/download.png" alt="Profile Picture">
+        </div>
+        
+        <div id="profile-popup">
+            <span id="email-id"></span>
+
+            <div id="profile-image">
+                <div id="profile-picture-container">
+                    <img id="profile-picture" src="/image/download.png" alt="Profile Picture">
+                    <div id="profile-edit-icon">
+                        <i class="fa-light fa-pen"></i>
+                    </div>
+                    <div id="profile-picture-options" style="display: none;">
+                        <!-- By using the accept attribute with the value "image/*", 
+                        you're providing a hint to the user about the types of files 
+                        they should select, making it clear that they should choose an image file. -->
+                        <input type="file" accept="image/*" id="profile-picture-input" style="display: none;">
+                        <button id="change-profile-picture">Change</button>
+                        <button id="remove-profile-picture">Remove</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="profile-name">
+                <div id="profile-name-container">
+                    <span id="full-name-id"></span>
+                    <input type="text" id="profile-name-input" style="display: none;">
+                    <div id="profile-name-edit-icon">
+                        <i class="fa-light fa-pen"></i>
+                    </div>
+                    <div id="profile-name-save-icon" style="display: none;">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </div>
+                </div>
+            </div>
+
+            <button id="manage-account-redirect">
+                <a target="_blank" href="https://myaccount.google.com/?hl=en&utm_source=OGB&utm_medium=act">Manage your Google Account</a>
+            </button>
+
+            <button id="logout">Logout</button>
+        </div>
+
+        <div id="notification-popup">
+            <p>No messages for you.</p>
+        </div>
+    </header>
+
+    <div id="popup-overlay"></div>
+
+    <section id="room-config-popup" class="config-popup">
+        <div class="config-popup-container">
+            <div id="config-popup-close-button" class="popup-close-button"><i class="fa-solid fa-rectangle-xmark"></i></div>
+            <div class="config-popup-options">
+                <div id="create-room-option" class="room-config-option">
+                    <span>Create new room</span>
+                </div>
+                <div id="join-room-option" class="room-config-option">
+                    <span>Join existing room</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="create-room-popup" class="config-popup">
+        <div class="config-popup-container">
+            <div class="create-room-fields">
+                <div class="create-room-field">
+                    <h4>Room name</h4>
+                    <input id="room-name-input" type="text" required>
+                    <label id="room-name-input-error">
+                        <i class="fa-regular fa-circle-exclamation"></i>
+                        <span>Room name cannot be empty</span>
+                    </label>
+                </div>
+                <div class="create-room-field">
+                    <h4>Room type</h4>
+                    <select id="room-type-input">
+                        <option value="class">Class</option>
+                        <option value="project">Project</option>
+                    </select>
+                </div>
+            </div>
+            <div class="config-control-options">
+                <div id="create-room-config-cancel-button" class="config-control-option config-control-option-available">
+                    <span>Cancel</span>
+                </div>
+                <div id="create-room-config-create-button" class="config-control-option config-control-option-unavailable">
+                    <span>Create</span>
+                    <span><i class="fa-sharp fa-solid fa-circle-notch fa-spin"></i></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="join-room-popup" class="config-popup">
+        <div class="config-popup-container">
+            <div class="join-room-field">
+                <h4>Room code</h4>
+                <input id="room-code-input" type="text" required>
+                <label id="room-code-input-error">
+                    <i class="fa-regular fa-circle-exclamation"></i>
+                    <span>Room code already used or unavailable</span>
+                </label>
+            </div>
+            <div class="config-control-options">
+                <div id="join-room-config-cancel-button" class="config-control-option config-control-option-available">
+                    <span>Cancel</span>
+                </div>
+                <div id="join-room-config-join-button" class="config-control-option config-control-option-unavailable">
+                    <span>Join</span>
+                    <span><i class="fa-sharp fa-solid fa-circle-notch fa-spin"></i></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="plus-icon-container">
+        <i id="plus-icon" class="fa-solid fa-circle-plus"></i>
+    </div>
+
+    <main id="main-container">
+        <aside id="room-control-menu">
+            <ul id="room-control-menu-options">
+                <li class="room-control-menu-option selected-room-control-menu-option"><i class="fa-regular fa-chalkboard"></i><span class="room-control-menu-option-description">Created Rooms</span></li>
+                <li class="room-control-menu-option"><i class="fa-regular fa-chalkboard-user"></i><span class="room-control-menu-option-description">Joined Rooms</span></li>
+                <li class="room-control-menu-option"><i class="fa-regular fa-circle-question"></i><span class="room-control-menu-option-description">Help & FAQ</span></li>
+            </ul>
+        </aside>
+
+        <section id="created-room-collection" class="room-collection-container">
+            <header class="room-collection-header">
+                <span>Your created rooms</span>
+                <span class="room-sort-tag all-tag selected-tag">all</span>
+                <span class="room-sort-tag class-tag">class</span>
+                <span class="room-sort-tag project-tag">project</span>
+            </header>
+            <div class="room-collection"></div>
+        </section>
+
+        <section id="joined-room-collection" class="room-collection-container">
+            <header class="room-collection-header">
+                <span>Your joined rooms</span>
+                <span class="room-sort-tag all-tag selected-tag">all</span>
+                <span class="room-sort-tag class-tag">class</span>
+                <span class="room-sort-tag project-tag">project</span>
+            </header>
+            <div class="room-collection"></div>
+        </section>
+
+        <section id="room-control-help">
+            <header class="room-collection-header">
+                <span>Help Portal</span>
+            </header>
+            <div class="room-collection">
+                <img class="section-under-construction" src="/image/under-construction.jpg" alt="under-construction-image">
+            </div>
+        </section>
+    </main>
+
+    <!-- scripts -->
+    <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-storage.js"></script>
+
+    <script type="module" src="/script/firebase-config.js"></script>
+    <script type="module" src="/script/profileScript.js"></script>
+</body>
+
+</html>

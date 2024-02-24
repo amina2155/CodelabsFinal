@@ -1,0 +1,1049 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-family: "Roboto";
+    font-size: 16px;
+    user-select: none;
+}
+
+body {
+    height: 100vh;
+    width: 100%;
+
+    overflow: hidden;
+    position: relative;
+
+    background: whitesmoke;
+}
+
+#header-container {
+    height: 4rem;
+    width: 100%;
+    background: #19A7CE;
+
+    border-bottom: 0.05rem solid #fff;
+
+    display: flex;
+    justify-content: space-between;
+
+    position: relative;
+}
+
+#header-text {
+    font-family: "Audiowide";
+    font-size: 1.75rem;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#header-text img {
+    width: 2.25rem;
+    height: 2.25rem;
+
+    margin: 0 1rem 0 1.5rem;
+}
+
+#header-text span:nth-of-type(1) {
+    color: whitesmoke;
+}
+
+#header-text span:nth-of-type(2) {
+    color: #FFD369;
+}
+
+#header-options {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#profile-icon,
+#notification-icon,
+#settings-icon {
+    width: 40px;
+    height: 40px;
+    
+    margin: 0 1.5rem 0 0;
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    position: relative;
+}
+
+#notification-icon,
+#settings-icon {
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 1.25rem;
+
+    transition: all 0.2s ease;
+}
+
+#notification-icon:hover,
+#settings-icon:hover {
+    background-color: #1691b3;
+}
+
+#notification-icon i,
+#settings-icon i {
+    pointer-events: none;
+}
+
+.new-notification-arrived::before {
+    content: '';
+    
+    height: 10px;
+    width: 10px;
+
+    background-color: #c73030;
+
+    border-radius: 50%;
+    
+    position: absolute;
+    top: 10%;
+    right: 10%;
+}
+
+.notification-icon-active {
+    color: #FFD369 !important;
+}
+
+#profile-popup {
+    display: none;
+
+    height: 395px;
+    width: 330px;
+
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 10px;
+
+    background-color: #efefef;
+    padding: 20px;
+    border-radius: 5%;
+    
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    
+    text-align: center; 
+    z-index: 999;
+}
+
+#email-id {
+    width: 100%;
+    
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+
+    font-size: 0.85rem;
+    font-family: "Verdana";
+}
+
+#profile-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    padding: 2rem 0;
+}
+
+#profile-picture-container {
+    position: relative;
+
+    width: 120px;
+    height: 120px;
+}
+
+#profile-picture {
+    width: 120px;
+    height: 120px;
+
+    border-radius: 50%;
+}
+
+#profile-edit-icon {
+    height: 28px;
+    width: 28px;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: absolute;
+    right: 0;
+    bottom: 0;
+
+    color: whitesmoke;
+    background-color: #1d92c9;
+    cursor: pointer;
+}
+
+#profile-picture-options {
+    position: absolute;
+    left: 110%;
+    bottom: 0;
+
+    transition: all 0.3s ease;
+}
+
+#change-profile-picture,
+#remove-profile-picture {
+    width: 5rem;
+    height: 2rem;
+
+    color: whitesmoke;
+    background-color: #1d92c9;
+
+    margin-bottom: 0.35rem;
+    border: none;
+
+    box-sizing: border-box;
+}
+
+#change-profile-picture:hover,
+#remove-profile-picture:hover {
+    background-color: #1979a6;
+}
+
+#remove-profile-picture::after {
+    content: "";
+    
+    position: absolute;
+    bottom: 0;
+    right: 100%;
+
+    margin-bottom: 0.35rem;
+
+    border-width: 4px;
+    border-style: solid;
+    border-color: transparent #1d92c9 #1d92c9 transparent;
+}
+
+#remove-profile-picture:hover::after {
+    border-color: transparent #1979a6 #1979a6 transparent;
+}
+
+#profile-name{
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+
+    margin-bottom: 40px;
+}
+
+#profile-name-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0.25rem 0.5rem;
+
+    border: #666 solid 1px;
+    border-radius: 1.5rem;
+}
+
+#full-name-id {
+    font-family: "Poppins";
+    font-size: 1.25rem;
+    padding: 0 0.5rem;
+}
+
+#profile-name-input {
+    height: 27px;
+    width: 10rem;
+    
+    font-family: "Poppins";
+    font-size: 1rem;
+    text-align: center;
+    outline: none;
+
+    box-shadow: inset 0 1px 3px #ddd;
+
+    border: 1px solid #ccc;
+    border-radius: 1rem;
+}
+
+#profile-name-input:focus {
+    border-bottom: 2.5px solid dodgerblue;
+}
+
+#profile-name-edit-icon {
+    height: 28px;
+    width: 28px;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-left: 0.25rem;
+
+    color: whitesmoke;
+    background-color: #1d92c9;
+    cursor: pointer;
+}
+
+#profile-name-save-icon {
+    height: 28px;
+    width: 28px;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-left: 0.25rem;
+
+    color: whitesmoke;
+    background-color: #1d92c9;
+    cursor: pointer;
+}
+
+#profile-edit-icon:hover,
+#profile-name-edit-icon:hover,
+#profile-name-save-icon:hover {
+    background-color: #1979a6;
+}
+
+#manage-account-redirect a {
+    text-decoration: none;
+    color: #1d92c9;
+}
+
+#manage-account-redirect,
+#logout {
+    width: 17rem;
+
+    font-family: "Poppins";
+    font-size: 1rem;
+
+    padding: 0.35rem 0;
+    margin: 0.5rem;
+    border-radius: 1.85rem;
+    
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+#manage-account-redirect {
+    border: #1d92c9 solid 1px;
+}
+
+#manage-account-redirect:hover {
+    background-color: #1d92c9;
+}
+
+#manage-account-redirect:hover a {
+    color: whitesmoke;
+}
+
+#logout{
+    color: #c73030;
+    border: #c73030 solid 1px;
+}
+
+#logout:hover{
+    color: whitesmoke;
+    background-color: #c73030;
+}
+
+#notification-popup {
+    display: none;
+
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 80px; 
+    z-index: 999;
+    
+    background-color: white;
+    
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    
+    padding: 3px 10px;
+    border-radius: 5px;
+
+    max-width: 500px;
+    max-height: 200px;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+#notification-popup::-webkit-scrollbar {
+    width: 0.35rem;
+}
+
+#notification-popup::-webkit-scrollbar-track-piece {
+    border-radius: 5px;
+    background-color: #555;
+}
+
+#notification-popup::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: #ccc;
+}
+
+#notification-popup::-webkit-scrollbar-thumb:hover {
+    background-color: #029ed3;
+}
+
+#notification-popup p {
+    background-color: #f0f0f0;
+    padding: 8px;
+    margin: 5px 0;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#plus-icon-container {
+    position: fixed;
+    bottom: 45px;
+    right: 60px; 
+    cursor: pointer;
+    font-size: 40px;
+    transition: transform 0.3s ease;
+}
+
+#plus-icon{
+    color: #19A7CE;
+    transition: transform 0.3s ease;
+}
+
+#plus-icon-container :hover {
+    transform: scale(1.4); 
+    opacity: 0.8;
+}
+
+/* ///////////////////////////////////////////////////////////////////// */
+/* room container css */
+/* ///////////////////////////////////////////////////////////////////// */
+
+#main-container {
+    height: 100vh;
+    width: 100%;
+}
+
+#room-control-menu {
+    height: 100vh;
+    width: 3.5rem;
+
+    background-color: #E1D7C6;
+
+    position: fixed;
+    z-index: 1;
+}
+
+ul#room-control-menu-options {
+    list-style: none;
+}
+
+.room-control-menu-option {
+    height: 3.5rem;
+    width: 3.5rem;
+
+    background-color: #E1D7C6;
+    border-bottom: 0.1rem outset #333;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+
+    transition: all 0.3s ease;
+}
+
+.room-control-menu-option i {
+    font-size: 1.25rem;
+    color: #333;
+}
+
+.room-control-menu-option:hover {
+    background-color: #666;
+}
+
+.room-control-menu-option:hover i {
+    color: rgba(245, 245, 245, 1);
+}
+
+.selected-room-control-menu-option {
+    background-color: #333;
+    border-left: 0.25rem solid #FFC045;
+}
+
+.selected-room-control-menu-option:hover {
+    background-color: #333;
+    border-left: 0.25rem solid #FFC045;
+}
+
+.selected-room-control-menu-option i {
+    color: #FFC045 !important;
+}
+
+.room-control-menu-option-description {
+    height: 3.5rem;
+    width: 0;
+
+    color: rgba(245, 245, 245, 1);
+    background-color: #666;
+
+    font-family: 'Poppins';
+
+    position: absolute;
+    left: 100%;
+
+    display: flex;
+    align-items: center;
+
+    box-sizing: border-box;
+
+    white-space: nowrap;
+    overflow: hidden;
+
+    transition: inherit;
+}
+
+.selected-room-control-menu-option .room-control-menu-option-description {
+    color: #FFC045 !important;
+    background-color: #333 !important;
+}
+
+.room-control-menu-option:hover .room-control-menu-option-description,
+.selected-room-control-menu-option:hover .room-control-menu-option-description {
+    width: auto;
+    padding: 0 0.5rem;
+}
+
+.room-collection-container {
+    height: calc(100% - 4rem);
+    width: calc(100% - 3.55rem);
+
+    margin-left: 3.55rem;
+}
+
+#created-room-collection.room-collection-container {
+    display: block;
+}
+
+#joined-room-collection.room-collection-container {
+    display: none;
+}
+
+.room-collection-header {
+    height: 50px;
+
+    border-bottom: 0.15rem solid black;
+    padding-left: 1.5rem;
+    margin-left: 1rem;
+
+    display: flex;
+    align-items: center;
+    
+    font-family: 'Poppins';
+    font-size: 1.4rem;
+    font-weight: 400;
+}
+
+.room-collection-header .room-sort-tag {
+    font-size: 1rem;
+
+    background-color: #e9e7df;
+
+    margin-left: 0.75rem;
+    padding: 0.15rem 1rem;
+    border-radius: 1rem;
+
+    transition: all 0.2s ease;
+}
+
+.room-collection-header .room-sort-tag:hover {
+    background-color: #cac9c2;
+
+    cursor: pointer;
+}
+
+.selected-tag {
+    color: white;
+    background-color: #feb82b !important;
+
+    pointer-events: none;
+}
+
+.room-collection {
+    height: calc(100% - 50px);
+    width: 100%;
+    padding: 1rem 0 0 1.5rem;
+
+    box-sizing: border-box;
+
+    display: flex;
+    flex-wrap: wrap;
+
+    overflow-y: auto;
+}
+
+.room-collection .section-under-construction {
+    height: 48rem;
+}
+
+#room-control-help {
+    height: calc(100% - 4rem);
+    width: calc(100% - 3.55rem);
+
+    margin-left: 3.55rem;
+
+    display: none;
+}
+
+/* ///////////////////////////////////////////////////////////////////// */
+/* room card css */
+/* ///////////////////////////////////////////////////////////////////// */
+
+.room-card {
+    height: 300px;
+    width: 300px;
+
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    margin: 0 1.5rem 1.5rem 0;
+
+    transition: all 0.2s ease;
+
+    background-color: whitesmoke;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.room-card-hidden {
+    display: none !important;
+}
+
+.room-card:hover {
+    box-shadow: 0.125rem 0.2rem 0.4rem 0 #ccc,
+               -0.125rem 0.2rem 0.4rem 0 #ccc;
+}
+
+.room-card-main {
+    height: 80%;
+    width: 100%;
+
+    border-radius: 10px 10px 0 0;
+    padding: 1rem;
+
+    box-sizing: border-box;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    position: relative;
+
+    transition: all 0.3s ease;
+
+    cursor: pointer;
+}
+
+.room-card-main:hover .room-card-text:nth-of-type(1) {
+    color: #1d92c9;
+}
+
+.room-card-main .room-card-text {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    color: #333;
+
+    font-family: 'Poppins', sans-serif;
+
+    z-index: 1;
+}
+
+.room-card-main .room-card-text:nth-of-type(1) {
+    font-size: 1.5rem;
+}
+
+.room-card-main .room-card-text-background {
+    width: 100%;
+    height: 100%;
+
+    background-color: whitesmoke;
+
+    clip-path: polygon(0 33%, 100% 66%, 100% 100%, 0 100%);
+
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.room-card-control {
+    height: 20%;
+    width: 100%;
+
+    padding: 0 1.25rem 0;
+
+    background-color: #e9e7df;
+
+    border-top: 1px solid #ccc;
+    border-radius: 0 0 10px 10px;
+
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.room-card-utility-control {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.room-card-control-option {
+    height: 2.75rem;
+    width: 2.75rem;
+
+    border-radius: 50%;
+
+    color: #666;
+
+    font-size: 1.35rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: all 0.2s ease;
+
+    cursor: pointer;
+}
+
+.room-card-control-option.copy-code-option {
+    margin-left: 0.25rem;
+}
+
+.room-card-control-option:hover {
+    color: #1d92c9;
+    background-color: whitesmoke;
+}
+
+.room-card-control-option.delete-room-option:hover,
+.room-card-control-option.leave-room-option:hover {
+    color: rgb(199, 48, 48);
+}
+
+.room-card-control-option:active {
+    color: whitesmoke;
+    background-color: #1d92c9;
+}
+
+.room-card-control-option.delete-room-option:active,
+.room-card-control-option.leave-room-option:active {
+    color: whitesmoke;
+    background-color: rgb(199, 48, 48);
+}
+
+/* ///////////////////////////////////////////////////////////////////// */
+/* room configure css */
+/* ///////////////////////////////////////////////////////////////////// */
+
+#popup-overlay{
+    height: 100vh;
+    width: 100%;
+
+    background-color:rgba(157, 178, 191, 0.25);
+    backdrop-filter: blur(0.25rem);
+
+    display: none;
+
+    position: absolute;
+
+    z-index: 2;
+}
+
+.config-popup{
+    align-items: center;
+    justify-content: center;
+
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 35%;
+
+    z-index: 3;
+}
+
+#room-config-popup {
+    display: none;
+}
+
+#create-room-popup {
+    display: none;
+}
+
+#join-room-popup {
+    display: none;
+}
+
+.config-popup-container{
+    border-radius: 10px;
+    border: 1px solid #212d3e;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative
+}
+
+#room-config-popup .config-popup-container{
+    height: 300px;
+    width: 600px;
+
+    background-color: whitesmoke;
+}
+
+#create-room-popup .config-popup-container {
+    height: 385px;
+    width: 575px;
+
+    background-color: whitesmoke;
+    
+    flex-direction: column;
+    
+    padding: 1rem 0 0;
+    box-shadow: 0.15rem 0.15rem 0.2rem 0 #9DB2BF;
+}
+
+#join-room-popup .config-popup-container {
+    height: 200px;
+    width: 550px;
+
+    background-color: whitesmoke;
+    
+    flex-direction: column;
+    
+    padding: 1rem 0 0;
+    box-shadow: 0.15rem 0.15rem 0.2rem 0 #9DB2BF;
+}
+
+.popup-close-button{
+    height: 2.25rem;
+    width: 2.25rem;
+
+    position: absolute;
+    top: 0.9rem;
+    right: 1.05rem;
+}
+
+.popup-close-button i {
+    font-size: 2.25rem;
+    color:#9DB2BF;
+
+    transition: all 0.2s ease;
+}
+
+.popup-close-button i:hover {
+    color:rgb(199, 48, 48);
+}
+
+#room-config-popup .config-popup-options{
+    width: 430px;
+}
+
+#room-config-popup .room-config-option{
+    height: 50px;
+    margin: 2rem 0;
+    border: 1px solid #212d3e;
+    border-radius: 6px;
+
+    background-color: white;
+
+    transition: all 0.2s ease;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#room-config-popup .room-config-option:hover {
+    background-color:#FFD369;
+}
+
+#room-config-popup .room-config-option span {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 1000;
+    color: #212d3e;
+}
+
+.create-room-field {
+    height: 100px;
+    width: 450px;
+
+    background-color: white;
+
+    border: 1px solid #80929d;
+    border-radius: 10px;
+    margin: 0 0 1.25rem;
+    padding: 0.5rem 1rem;
+
+    box-sizing: content-box;
+}
+
+.create-room-field:focus-within {
+    box-shadow: 0.15rem 0.15rem 0.2rem 0 #9DB2BF;
+}
+
+.create-room-field h4 {
+    font-family: 'Poppins', sans-serif;
+}
+
+.create-room-field input[type=text],
+.join-room-field input[type=text],
+.create-room-field select {
+    width: 100%;
+    padding: 9px 10px;
+    margin: 10px 0;
+
+    outline: none;
+    box-sizing: border-box;
+
+    display: inline-block;
+    
+    font-size: 1.05rem;
+}
+
+.create-room-field input[type=text]:focus,
+.create-room-field select:focus,
+.join-room-field input[type=text]:focus{
+    border-bottom: 2.5px solid dodgerblue;
+}
+
+.create-room-field input[type=text] {
+    box-shadow: inset 0 1px 3px #ddd;
+
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.create-room-field select {
+    border: none;
+    border-bottom: 1px solid #ccc;
+}
+
+.join-room-field {
+    height: 95px;
+    width: 450px;
+}
+
+.join-room-field input[type=text] {
+    box-shadow: inset 0 1px 3px #ddd;
+
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#room-name-input-error,
+#room-code-input-error {
+    color: #c73030;
+    font-size: 0.75rem;
+    display: none;
+}
+
+.config-control-options {
+    height: 40px;
+    width: 475px;
+
+    margin: 0.35rem 0 0;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.config-control-option {
+    height: 40px;
+    width: 80px;
+
+    border-radius: 10px;
+    margin-left: 1rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: 'Poppins', sans-serif;
+
+    transition: all 0.2s ease;
+}
+
+#create-room-config-cancel-button.config-control-option-available,
+#join-room-config-cancel-button.config-control-option-available {
+    background-color: #b6cddb;
+}
+
+#create-room-config-cancel-button.config-control-option-available:hover,
+#join-room-config-cancel-button.config-control-option-available:hover {
+    color: white;
+    background-color: #c73030;
+}
+
+#create-room-config-create-button.config-control-option-available,
+#join-room-config-join-button.config-control-option-available {
+    color: white;
+    background-color: dodgerblue;
+}
+
+.config-control-option-available:hover {
+    box-shadow: 0.125rem 0.125rem 0.15rem 0 #9DB2BF;
+    cursor: pointer;
+}
+
+.config-control-option-unavailable {
+    color: grey;
+    background-color: #b6cddb;
+    pointer-events: none;
+}
+
+.config-control-option-unavailable:hover {
+    box-shadow: none;
+}
+
+#create-room-config-create-button span:nth-of-type(2),
+#join-room-config-join-button span:nth-of-type(2) {
+    display: none;
+}
+
+.config-control-option-processing {
+    pointer-events: none;
+}
+
+.config-control-option-processing span:nth-of-type(1) {
+    display: none;
+}
+
+.config-control-option-processing span:nth-of-type(2) {
+    display: block !important;
+}
