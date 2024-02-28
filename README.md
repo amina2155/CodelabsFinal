@@ -9,7 +9,8 @@ Features
  - Analytics and Progress Tracking: Provides teacher access to student progress and coding activity, along with visual representation of coding milestones and accomplishments.
 
 Demonstration
-https://l.messenger.com/l.php?u=https%3A%2F%2Fyoutu.be%2F4mvR2jQD7w8&h=AT2UDV7p2j7vmRpkwYQOzn4d8GeQ5pc-PzXxOGeSm3B0vSOOhtYhy7GPQf_ZmxRm8zIKt_7klxCdPyIJxr4uGpWPpBhZELumJNUNsSlUXgWY6p35i30ODreemWe65ZSNNb1N
+[![Watch the video](https://img.youtube.com/vi/4mvR2jQD7w8/hqdefault.jpg)](https://www.youtube.com/embed/4mvR2jQD7w8)
+
 
 Future Vision
 
